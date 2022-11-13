@@ -10,7 +10,7 @@ const DFApp: NextPage = ({ Component, pageProps }: any) => {
             <HeaderSection />
             <Component {...pageProps} />
             <FooterSection />
-            <script src={`https://maps.googleapis.com/maps/api/js?key=${process.env.GMP_API_KEY}&libraries=places`} />
+            <script src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GMP_API_KEY}&libraries=places`} />
         </>
     )
 }

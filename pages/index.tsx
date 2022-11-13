@@ -114,13 +114,13 @@ const AppStart: NextPage = () => {
 										style={{ border: 0 }}
 										loading="lazy"
 										referrerPolicy="no-referrer-when-downgrade"
-										src={`https://www.google.com/maps/embed/v1/place?key=${process.env.GMP_API_KEY}
+										src={`https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_GMP_API_KEY}
                                             &q=${apiResponse.name}`}></iframe>
 									<p className="my-2 mt-8 text-sm text-gray-600">
 										Maps Static Image API
 									</p>
 									<img
-										src={`https://maps.googleapis.com/maps/api/staticmap?size=512x256&zoom=15&center=${apiResponse.name}&key=${process.env.GMP_API_KEY}&map_id=b98792dfab037594`}
+										src={`https://maps.googleapis.com/maps/api/staticmap?size=512x256&zoom=15&center=${apiResponse.name}&key=${process.env.NEXT_PUBLIC_GMP_API_KEY}&map_id=b98792dfab037594`}
 										className="rounded-xl"
 									/>
 								</div>
