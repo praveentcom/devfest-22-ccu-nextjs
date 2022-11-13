@@ -1,6 +1,18 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+/* eslint-disable @next/next/no-sync-scripts */
+import { NextPage } from "next"
+import HeaderSection from "@/components/sections/header"
+import FooterSection from "@/components/sections/footer"
+import "../styles/globals.scss"
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+const DFApp: NextPage = ({ Component, pageProps }: any) => {
+    return (
+        <>
+            <HeaderSection />
+            <Component {...pageProps} />
+            <FooterSection />
+            <script src={`https://maps.googleapis.com/maps/api/js?key=${process.env.GMP_API_KEY}&libraries=places`} />
+        </>
+    )
 }
+
+export default DFApp
