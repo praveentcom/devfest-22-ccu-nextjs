@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { PubSub } from '@google-cloud/pubsub';
-import { textSearch } from './getPlaces';
+import { textSearch } from '@/lib/getPlaces';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {

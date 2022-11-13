@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
 import axios from 'axios';
 import { NextPage } from 'next';
@@ -25,7 +26,7 @@ const AppStart: NextPage = () => {
 			setEventName(target.name.value);
 			setEventDate(new Date(target.date.value));
 			try {
-				var response = await axios.post('/api/agendaRequest', {
+				var response = await axios.post('/api/getLocationInfo', {
 					address: address,
 				});
 				if (response.status === 200) {
@@ -82,6 +83,7 @@ const AppStart: NextPage = () => {
 									<img
 										src={apiResponse.picture}
 										className="rounded-xl"
+                                        alt={'Location Picture'}
 									/>
 									<h2 className="mt-4 text-2xl font-bold tracking-tight text-gray-900">
 										{eventName}
@@ -91,6 +93,7 @@ const AppStart: NextPage = () => {
 									</p>
 									<hr></hr>
 									<img
+                                        alt={'Location Icon'}
 										src={apiResponse.icon}
 										className="w-6 h-6 my-4"
 									/>
@@ -100,10 +103,13 @@ const AppStart: NextPage = () => {
 									<p className="my-2 text-sm text-gray-600">
 										Address: {apiResponse.formatted_address}
 									</p>
-									<p className="my-2 mb-6 text-sm text-gray-600">
+									<p className="my-2 text-sm text-gray-600">
 										Google Maps Rating: {apiResponse.rating}{' '}
 										({apiResponse.user_ratings_total}{' '}
 										ratings)
+									</p>
+                                    <p className="my-2 mb-6 text-sm text-gray-600">
+										Location Categories: {apiResponse.types.join(' ')}
 									</p>
 									<p className="my-2 mt-6 text-sm text-gray-600">
 										Maps Embed API
@@ -117,11 +123,12 @@ const AppStart: NextPage = () => {
 										src={`https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_GMP_API_KEY}
                                             &q=${apiResponse.name}`}></iframe>
 									<p className="my-2 mt-8 text-sm text-gray-600">
-										Maps Static Image API
+										Static Map Image API
 									</p>
 									<img
+                                        alt={'Static Map Image API'}
 										src={`https://maps.googleapis.com/maps/api/staticmap?size=512x256&zoom=15&center=${apiResponse.name}&key=${process.env.NEXT_PUBLIC_GMP_API_KEY}&map_id=b98792dfab037594`}
-										className="rounded-xl"
+										className="mb-2 rounded-xl"
 									/>
 								</div>
 							) : (
@@ -265,7 +272,7 @@ const AppStart: NextPage = () => {
 										) : (
 											<button
 												type="button"
-												className="flex justify-center w-full px-4 py-2 mt-8 text-sm font-medium text-white bg-blue-500 border border-transparent rounded-md shadow-sm cursor-not-allowed focus:outline-none"
+												className="flex justify-center w-full px-4 py-2 mt-4 text-sm font-medium text-white bg-blue-500 border border-transparent rounded-md shadow-sm cursor-not-allowed focus:outline-none"
 												disabled>
 												<svg
 													className="w-5 h-5 mr-3 animate-spin"
